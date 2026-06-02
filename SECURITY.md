@@ -10,7 +10,7 @@ Do **not** commit:
 Safe to commit:
 
 - Application source code
-- Blank USCIS PDF templates under `tasks/cms/blank/`
+- Blank sample form PDFs under `tasks/cms/blank/`
 - `.env.example` files (empty placeholders only)
 
 Before push:

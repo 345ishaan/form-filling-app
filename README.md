@@ -1,12 +1,12 @@
 # Form Filling App
 
-Immigration case management and USCIS form filling with a Claude agent (Modal CLI + minimal web UI).
+Agent that fills PDF forms using information from uploaded case documents (Modal CLI + minimal web UI).
 
 ## Summary
 
-- Standalone CMS form-filling app (Modal CLI + minimal web UI)
-- LiteParse v2 (native Python; no Node CLI in Modal images)
-- Sensitive/large CMS assets excluded from git (case zip, GT JSON, GT PDFs)
+- Upload a case document archive and a blank form PDF; the agent searches the case and fills fields
+- LiteParse v2 for document text extraction (native Python)
+- Case zips, ground-truth JSON, and filled reference PDFs stay out of git
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ npm install && cd apps/web && npm install && cd ../..
 
 # Local sample data (not in repo)
 cp /path/to/sample_case.zip tasks/cms/
-cp /path/to/form_*.json tasks/cms/
+cp /path/to/form_*.json tasks/cms/    # optional, for offline scoring
 
 modal profile activate <profile>
 modal secret create ant-key ANTHROPIC_API_KEY=<your-key>
@@ -67,7 +67,7 @@ cd apps/api && uv run python -m modal serve modal_app.py
 
 # terminal 2
 cd apps/web && npm run dev
-# open http://localhost:5173 — upload case .zip + form .pdf, chat with agent
+# open http://localhost:5173 — upload case .zip + blank form .pdf, chat with the agent
 ```
 
 Or from repo root: `npm run dev` (Modal + web together)
@@ -80,6 +80,6 @@ Or from repo root: `npm run dev` (Modal + web together)
 
 | Path | Purpose |
 |------|---------|
-| `apps/api/` | FastAPI, CMS env, Modal apps |
+| `apps/api/` | FastAPI, form-filling env, Modal apps |
 | `apps/web/` | Minimal React UI |
-| `tasks/cms/` | Blank PDFs only in git; case zip + GT JSON local |
+| `tasks/cms/` | Sample blank form PDFs in git; case zip + GT JSON local |

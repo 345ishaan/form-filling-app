@@ -1,26 +1,22 @@
-# CMS case data
+# Case and form assets
 
-**Do not commit case documents or ground-truth filled values.** They stay on your machine only.
+**Do not commit case documents or ground-truth filled values.** Keep them local only.
 
 | File | In git? | Purpose |
 |------|---------|---------|
-| `blank/*.pdf` | Yes | Public USCIS blank form templates |
-| `sample_case.zip` | **No** | Case evidence zip (~142 MB, may contain PII) |
-| `form_*.json` | **No** | GT filled values for offline P/R (contains PII) |
-| `form_*_gt.pdf` | **No** | GT PDFs for local eval only |
+| `blank/*.pdf` | Yes | Blank fillable form templates (samples) |
+| `sample_case.zip` | **No** | Case document archive (~142 MB; may contain PII) |
+| `form_*.json` | **No** | Ground-truth field values for offline scoring |
+| `form_*_gt.pdf` | **No** | Reference filled PDFs for local eval only |
 
 ## Local setup (after clone)
 
-Copy sample files from your secure storage (not included in this repo):
-
 ```bash
 cp /path/to/sample_case.zip tasks/cms/
-cp /path/to/form_g28.json tasks/cms/
-cp /path/to/form_i140.json tasks/cms/
-cp /path/to/form_i907.json tasks/cms/
+cp /path/to/form_*.json tasks/cms/    # optional
 ```
 
-Or use your own case `.zip` and generate GT JSON with `apps/api` scoring scripts.
+Use any case `.zip` the agent can search; use any blank AcroForm PDF under `blank/` or upload via the UI.
 
 ## CLI example
 
@@ -32,4 +28,4 @@ uv run python -m modal run modal_cms_app.py \
   --gt-json ../../tasks/cms/form_i140.json
 ```
 
-GT JSON is **scoring-only** — never sent to the agent sandbox.
+Ground-truth JSON is **scoring-only** — never sent to the agent sandbox.

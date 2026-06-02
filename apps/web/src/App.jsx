@@ -127,7 +127,7 @@ export default function App() {
     <div className="app">
       <header>
         <h1>Form Filling App</h1>
-        <p>Upload a case + USCIS form, chat with the agent to fill fields.</p>
+        <p>Upload case documents and a blank form, then chat with the agent to fill fields.</p>
       </header>
 
       <div className="toolbar">
