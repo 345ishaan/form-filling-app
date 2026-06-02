@@ -1,0 +1,18 @@
+{
+  "name": "form-filling-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n modal,web -c blue,green \"npm run modal:serve\" \"npm run dev:web\"",
+    "dev:api": "cd apps/api && uv run python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
+    "modal:serve": "cd apps/api && uv run python -m modal serve modal_app.py",
+    "modal:deploy": "cd apps/api && uv run python -m modal deploy modal_app.py",
+    "sim:cms": "cd apps/api && uv run python -m modal run modal_cms_app.py --case-zip ../../tasks/cms/sample_case.zip --form-pdf ../../tasks/cms/blank/i-140.pdf",
+    "dev:web": "cd apps/web && npx vite --port 5173",
+    "sync": "uv sync",
+    "sync:requirements": "uv export --no-dev --no-hashes -o apps/api/requirements.txt"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Secrets & local config (never commit)
+.env
+.env.*
+!.env.example
+apps/api/.env
+apps/web/.env
+*.pem
+*credentials*
+secrets/
+
+# Node / frontend build
+node_modules/
+dist/
+
+# CMS case data — local only (PII / large files)
+tasks/cms/sample_case.zip
+tasks/cms/sample_case/
+tasks/cms/form_*.json
+tasks/cms/**/*_gt.pdf
+tasks/cms/form_*_GT.pdf
+
+# User uploads / run artifacts (if ever copied into repo)
+uploads/
+runs/
